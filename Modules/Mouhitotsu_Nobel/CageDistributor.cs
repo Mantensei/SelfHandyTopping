@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MantenseiLib;
@@ -6,6 +7,62 @@ using UnityEngine;
 
 namespace MantenseiNobel.Mouhitotsu
 {
+    public enum SkillType
+    {
+        Kindness = 1,
+        Money = 2,
+        Intelligence = 3,
+        Health = 4,
+        Sense = 5,
+        Luck = 6
+    }
+
+    [Serializable]
+    public class PlayerSkill
+    {
+        [SerializeField]
+        SkillType _type;
+
+        public SkillType Type => _type;
+
+        public PlayerSkill(SkillType type)
+        {
+            _type = type;
+        }
+
+        public void Execute()
+        {
+            switch (_type)
+            {
+                case SkillType.Kindness:
+                    ExecuteMedalEnhancement();
+                    break;
+                case SkillType.Money:
+                    ExecuteMedalRobbery();
+                    break;
+                case SkillType.Intelligence:
+                    ExecuteCageBlockade();
+                    break;
+                case SkillType.Health:
+                    ExecuteCageEnhancement();
+                    break;
+                case SkillType.Sense:
+                    ExecuteSkillEnhancement();
+                    break;
+                case SkillType.Luck:
+                    ExecuteScoreEnhancement();
+                    break;
+            }
+        }
+
+        void ExecuteMedalEnhancement() { }
+        void ExecuteMedalRobbery() { }
+        void ExecuteCageBlockade() { }
+        void ExecuteCageEnhancement() { }
+        void ExecuteSkillEnhancement() { }
+        void ExecuteScoreEnhancement() { }
+    }
+
     [System.Serializable]
     public class Player
     {
@@ -22,9 +79,32 @@ namespace MantenseiNobel.Mouhitotsu
         [SerializeField] string _name = "none";
         public string Name => _name;
 
+        [SerializeField] List<PlayerSkill> _skills = new();
+        public IReadOnlyList<PlayerSkill> Skills => _skills;
+
         public Player(string id)
         {
             this._id = id;
+        }
+
+        public bool UseSkill(int skillIndex, MedalGameReferenceHub hub)
+        {
+            if (skillIndex < 0 || skillIndex >= _skills.Count)
+            {
+                Debug.LogWarning($"Invalid skill index: {skillIndex}");
+                return false;
+            }
+
+            if (hub.GameManager.Status != GameStatus.Idle)
+            {
+                Debug.LogWarning("Skills can only be used before the game starts");
+                return false;
+            }
+
+            var skill = _skills[skillIndex];
+            skill.Execute();
+            _skills.RemoveAt(skillIndex);
+            return true;
         }
 
         public static implicit operator string(Player player) => player._id;
