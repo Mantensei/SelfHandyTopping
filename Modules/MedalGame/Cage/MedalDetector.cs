@@ -10,14 +10,19 @@ namespace MedalGame
 
     public class MedalDetector : MonoBehaviour
     {
-        [GetComponents(HierarchyRelation.Children)]
-        IMedalReceiver[] _medalReceivers;
+        // [GetComponents(HierarchyRelation.Self | HierarchyRelation.Children)]
+        // IMedalReceiver[] _medalReceivers;
+
+        [Parent]
+        Cage cage;
 
         void OnTriggerEnter2D(Collider2D other)
         {
+            var parent = cage.Safe()?.transform ?? transform;
+
             if (other.TryGetComponent<Medal>(out var medal))
             {
-                foreach (var receiver in _medalReceivers.Safe())
+                foreach (var receiver in parent.GetComponentsInChildren<IMedalReceiver>())
                 {
                     receiver.OnGetMedal(medal);
                 }

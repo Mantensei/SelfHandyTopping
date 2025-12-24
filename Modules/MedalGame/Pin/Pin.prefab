@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7061481875926530978}
   - component: {fileID: 4500550735271343212}
   - component: {fileID: 1386261462548746576}
+  - component: {fileID: 7002239984470238848}
   m_Layer: 0
   m_Name: Pin
   m_TagString: Untagged
@@ -137,3 +138,16 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.0125
+--- !u!114 &7002239984470238848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332254557003650680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a394400e5acb97b41b0328367fcb6fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugMode: 0
