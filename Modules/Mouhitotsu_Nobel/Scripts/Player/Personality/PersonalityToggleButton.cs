@@ -1,34 +1,41 @@
+using System;
+using MantenseiLib;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 namespace MantenseiNobel.Mouhitotsu
 {
-    public class PersonalityToggleButton : MonoBehaviour
+    public class PersonalityToggleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] Personality _personality;
-        [SerializeField] Toggle _toggle;
-        [SerializeField] TextMeshProUGUI _nameText;
-        [SerializeField] TextMeshProUGUI _skillNameText;
-        [SerializeField] TextMeshProUGUI _descriptionText;
+        Personality _personality;
+        [GetComponent(HierarchyRelation.Self | HierarchyRelation.Children)]
+        Toggle _toggle;
+        [SerializeField]
+        TextMeshProUGUI _nameText;
 
         public Personality Personality => _personality;
         public bool IsSelected => _toggle.isOn;
 
-        void Start()
-        {
-            if (_personality != null)
-            {
-                UpdateDisplay();
-            }
+        public event Action<Personality> OnPointerEnterEvent;
+        public event Action OnPointerExitEvent;
 
-            _toggle.onValueChanged.AddListener(OnToggleValueChanged);
-        }
-
-        public void SetPersonality(Personality personality)
+        public void Setup(Personality personality)
         {
             _personality = personality;
             UpdateDisplay();
+            _toggle.onValueChanged.AddListener(OnToggleValueChanged);
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            OnPointerEnterEvent?.Invoke(_personality);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            OnPointerExitEvent?.Invoke();
         }
 
         public void SetInteractable(bool interactable)
@@ -38,20 +45,13 @@ namespace MantenseiNobel.Mouhitotsu
 
         void UpdateDisplay()
         {
-            if (_nameText != null)
+            _nameText.text = _personality.Name;
+            if (_personality.Used)
             {
-                _nameText.text = _personality.Name;
+                _toggle.interactable = false;
+                _nameText.fontStyle = FontStyles.Strikethrough;
             }
-
-            if (_skillNameText != null)
-            {
-                _skillNameText.text = _personality.SkillName;
-            }
-
-            if (_descriptionText != null)
-            {
-                _descriptionText.text = _personality.SkillDescription;
-            }
+            _toggle.isOn = false;
         }
 
         void OnToggleValueChanged(bool isOn)

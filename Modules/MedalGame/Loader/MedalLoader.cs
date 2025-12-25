@@ -12,8 +12,7 @@ namespace MedalGame
     [CommonReference]
     public class MedalLoader : MonoBehaviour
     {
-        [GetComponent(HierarchyRelation.Parent)]
-        MedalGameReferenceHub Hub;
+        MedalGameReferenceHub Hub => MedalGameReferenceHub.Instance;
 
         MedalManager manager => Hub.MedalManager;
 

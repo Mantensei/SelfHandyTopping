@@ -5,9 +5,7 @@ namespace MedalGame
 {
     public class MedalReloader : MonoBehaviour, IMedalReceiver
     {
-        [GetComponent(HierarchyRelation.Parent)]
-        MedalGameReferenceHub hub;
-        MedalLoader Loader => hub.Loader;
+        MedalLoader Loader => MedalGameReferenceHub.Instance.Loader;
 
         public void OnGetMedal(Medal medal)
         {

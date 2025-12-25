@@ -1,3 +1,4 @@
+using System;
 using MantenseiLib;
 using UnityEngine;
 
@@ -23,13 +24,10 @@ namespace MedalGame
     [CommonReference]
     public class MedalGameManager : MonoBehaviour
     {
-        [GetComponent(HierarchyRelation.Self | HierarchyRelation.Parent)]
-        MedalGameReferenceHub _hub;
-
         GameStatus _status = GameStatus.Idle;
-
-        public MedalGameReferenceHub Hub => _hub;
         public GameStatus Status => _status;
+
+        public event Action OnGameOver;
 
         public void StartGame(MedalGameConfig config)
         {
@@ -60,6 +58,7 @@ namespace MedalGame
             }
 
             _status = GameStatus.GameOver;
+            OnGameOver?.Invoke();
         }
     }
 }

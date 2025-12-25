@@ -1,3 +1,4 @@
+using MantenseiLib;
 using MedalGame;
 using NUnit.Framework.Constraints;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace MantenseiNobel.Mouhitotsu
         float _generateDelay = 0.5f;
 
         MedalGameReferenceHub _hub;
+
+        public MedalGameReferenceHub Hub => _hub;
 
         public void OnMedalGameSceneActivate(MedalGameReferenceHub hub)
         {
@@ -36,7 +39,8 @@ namespace MantenseiNobel.Mouhitotsu
 
         void OnDestroy()
         {
-            _hub.Loader.OnPoolAllMedal -= HandleAllMedalsPooled;
+            if (_hub.IsSafe())
+                _hub.Loader.OnPoolAllMedal -= HandleAllMedalsPooled;
         }
     }
 }

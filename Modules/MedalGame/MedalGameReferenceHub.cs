@@ -10,7 +10,7 @@ namespace MedalGame
 
     }
 
-    public class MedalGameReferenceHub : MonoBehaviour
+    public class MedalGameReferenceHub : SingletonMonoBehaviour<MedalGameReferenceHub>
     {
         [GetComponent(HierarchyRelation.Self | HierarchyRelation.Children)]
         public MedalGameManager GameManager { get; private set; }

@@ -10,6 +10,9 @@ namespace MedalGame
         [GetComponents(HierarchyRelation.Children)]
         Cage[] _cages;
 
-        public IReadOnlyList<Cage> AllCages => _cages;
+        public IReadOnlyList<Cage> AllCages
+        {
+            get => _cages ??= GetComponentsInChildren<Cage>();
+        }
     }
 }

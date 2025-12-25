@@ -23,16 +23,8 @@ namespace MantenseiNobel.Mouhitotsu
         public void OnMedalGameSceneActivate(MedalGameReferenceHub hub)
         {
             _hub = hub;
-
-            var tes = new Player[]
-            {
-                new Player("A"){ /* SkillCount = 6, */ Alive = true, },
-                new Player("B"){ /* SkillCount = 1, */ },
-                new Player("C"){ /* SkillCount = 1, */ },
-                new Player("D"){ /* SkillCount = 1, */ },
-
-            };
-            DistributeCages(tes);
+            var players = PlayerManager.Instance.Players;
+            DistributeCages(players.ToArray());
         }
 
         public void DistributeCages(Player[] players)
@@ -41,10 +33,8 @@ namespace MantenseiNobel.Mouhitotsu
             _markerCages.Clear();
 
             int cageIndex = 0;
-            foreach (var player in players)
+            foreach (var player in players.Where(x => x.Alive))
             {
-                if (!player.Alive) continue;
-
                 var markerPrefab = _markerPrefabs.FirstOrDefault(m => m.ID == player.ID);
                 if (markerPrefab == null) markerPrefab = _defaultMarkerPrefab;
 
@@ -53,7 +43,7 @@ namespace MantenseiNobel.Mouhitotsu
                     _markerCages[markerPrefab] = new List<Cage>();
                 }
 
-                for (int i = 0; i < player.SkillCount && cageIndex < allCages.Count; i++)
+                for (int i = 0; i < player.SkillCount; i++)
                 {
                     var cage = allCages[cageIndex++];
                     _markerCages[markerPrefab].Add(cage);

@@ -5,8 +5,7 @@ namespace MedalGame
 {
     public class MedalGameEventMonitorAndExecutor : MonoBehaviour
     {
-        [GetComponent(HierarchyRelation.Parent)]
-        MedalGameReferenceHub _hub;
+        MedalGameReferenceHub _hub => MedalGameReferenceHub.Instance;
 
         [SerializeField] int _initialMedalCount = 10;
         [SerializeField] float _generateDelay = 0.5f;

@@ -8,8 +8,7 @@ namespace MedalGame
     [CommonReference]
     public class MedalManager : MonoBehaviour, IMedalGameStartReceiver
     {
-        [GetComponent(HierarchyRelation.Parent)]
-        MedalGameReferenceHub Hub;
+        MedalGameReferenceHub Hub => MedalGameReferenceHub.Instance;
         MedalLoader loader => Hub.Loader;
 
         [SerializeField] Medal _medalPrefab;

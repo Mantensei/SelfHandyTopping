@@ -104,34 +104,31 @@ namespace MedalGame
                 yield break;
             }
 
-            var rootObjects = scene.GetRootGameObjects();
-
             MedalGameReferenceHub hub = null;
-            foreach (var rootObject in rootObjects)
+            GameObject[] rootObjects = null;
+            while (hub == null)
             {
-                hub = rootObject.GetComponentInChildren<MedalGameReferenceHub>(true);
-                if (hub != null) break;
-            }
-
-            if (hub == null)
-            {
-                Debug.LogError("MedalGameReferenceHub not found in scene!");
-                yield break;
-            }
-
-            foreach (var rootObject in rootObjects)
-            {
-                var initializers = rootObject.GetComponentsInChildren<IMedalGameSceneInitializer>(true);
-                foreach (var initializer in initializers)
+                yield return null;
+                rootObjects = scene.GetRootGameObjects();
+                foreach (var rootObject in rootObjects)
                 {
-                    initializer.Initialize(operation);
+                    hub = rootObject.GetComponent<MedalGameReferenceHub>();
+                    if (hub != null) break;
                 }
             }
 
-            foreach (var rootObject in rootObjects)
+            // foreach (var rootObject in rootObjects)
+            // {
+            //     var initializers = rootObject.GetComponentsInChildren<IMedalGameSceneInitializer>(true);
+            //     foreach (var initializer in initializers)
+            //     {
+            //         initializer.Initialize(operation);
+            //     }
+            // }
+
+            foreach (var rootObject in FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
             {
-                var receivers = rootObject.GetComponentsInChildren<IMedalGameLoadCompleteReceiver>(true);
-                foreach (var receiver in receivers)
+                if (rootObject is IMedalGameLoadCompleteReceiver receiver)
                 {
                     receiver.OnMedalGameLoaded(hub);
                 }

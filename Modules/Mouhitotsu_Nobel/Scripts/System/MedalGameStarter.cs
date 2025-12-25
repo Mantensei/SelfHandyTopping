@@ -11,16 +11,11 @@ namespace MantenseiNobel.Mouhitotsu
 
     public class MedalGameStarter : MonoBehaviour
     {
+        [SerializeField] GameObject MedalGame_UI;
         MedalGameSceneResult _currentScene;
 
         public void LoadMedalGameScene(int initialMedalCount = 10)
         {
-            if (_currentScene != null)
-            {
-                Debug.LogWarning("MedalGame is already running");
-                return;
-            }
-
             var operation = new MedalGameOperation
             {
                 InitialMedalCount = initialMedalCount
@@ -38,6 +33,7 @@ namespace MantenseiNobel.Mouhitotsu
         void OnSceneActivated()
         {
             StartCoroutine(NotifySceneActivated());
+            MedalGame_UI.gameObject.SetActive(true);
         }
 
         IEnumerator NotifySceneActivated()
