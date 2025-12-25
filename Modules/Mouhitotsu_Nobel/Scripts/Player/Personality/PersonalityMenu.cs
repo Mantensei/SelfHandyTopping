@@ -68,11 +68,13 @@ namespace MantenseiNobel.Mouhitotsu
             var selectedPersonalities = _toggleButtons
                 .Where(x => x.IsSelected)
                 .Select(x => x.Personality)
-                .ToList();
+                .OrderByDescending(x => x.ExecutionPriority)
+                .ToArray();
+
+            var context = new SkillExecuteContext(_medalGameController.Hub, _currentPlayer, selectedPersonalities);
 
             foreach (var personality in selectedPersonalities)
             {
-                var context = new SkillExecuteContext(_medalGameController.Hub, _currentPlayer);
                 personality.Execute(context);
             }
 

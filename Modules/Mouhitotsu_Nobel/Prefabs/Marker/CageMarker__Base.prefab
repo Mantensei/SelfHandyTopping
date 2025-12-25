@@ -44,6 +44,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8102031c74615d74abf6cc5b0da19bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5455473315235546725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7776563703115581766}
+  - component: {fileID: 7066548820398981810}
+  m_Layer: 0
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7776563703115581766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455473315235546725}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8009171260578152683}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7066548820398981810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455473315235546725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2b73a892b3d4f4c9838ccecc605ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerId: 
 --- !u!1001 &952909941346709973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92,6 +137,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3640217315654773812, guid: 17bf86752cc661d43bac27e91fa8823b, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640217315654773812, guid: 17bf86752cc661d43bac27e91fa8823b, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640217315654773812, guid: 17bf86752cc661d43bac27e91fa8823b, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4008546164889182834, guid: 17bf86752cc661d43bac27e91fa8823b, type: 3}
       propertyPath: m_Name
       value: CageMarker__Base
@@ -106,6 +163,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7070405507708612926, guid: 17bf86752cc661d43bac27e91fa8823b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1511197405435271719}
+    - targetCorrespondingSourceObject: {fileID: 7070405507708612926, guid: 17bf86752cc661d43bac27e91fa8823b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7776563703115581766}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17bf86752cc661d43bac27e91fa8823b, type: 3}
 --- !u!4 &8009171260578152683 stripped

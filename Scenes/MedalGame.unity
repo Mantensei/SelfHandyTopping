@@ -3502,6 +3502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _medalPrefab: {fileID: -3919963276685123717, guid: f6de6d947b9d7de409dfd52888a65d2e, type: 3}
+  _generateDelay: 0.1
 --- !u!1 &671016587
 GameObject:
   m_ObjectHideFlags: 0

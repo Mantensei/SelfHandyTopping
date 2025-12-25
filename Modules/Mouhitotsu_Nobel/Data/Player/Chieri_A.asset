@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Chieri_A
   m_EditorClassIdentifier: 
   _id: A
-  _color: {r: 0.8018868, g: 0.16264686, b: 0.4414706, a: 1}
-  _mark: "\u2665"
+  _color: {r: 0.38431373, g: 0.6509804, b: 0.13333334, a: 1}
+  _mark: "\u2663"
   _name: "\u5343A\u91CC"

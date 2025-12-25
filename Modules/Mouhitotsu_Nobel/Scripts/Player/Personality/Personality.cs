@@ -1,3 +1,5 @@
+using System.Linq;
+using MantenseiLib;
 using MedalGame;
 using UnityEngine;
 
@@ -18,11 +20,13 @@ namespace MantenseiNobel.Mouhitotsu
     {
         public MedalGameReferenceHub Hub { get; }
         public Player Owner { get; }
+        public Personality[] SelectedSkills { get; }
 
-        public SkillExecuteContext(MedalGameReferenceHub hub, Player owner)
+        public SkillExecuteContext(MedalGameReferenceHub hub, Player owner, Personality[] selectedSkills)
         {
             Hub = hub;
             Owner = owner;
+            SelectedSkills = selectedSkills;
         }
     }
 
@@ -35,12 +39,14 @@ namespace MantenseiNobel.Mouhitotsu
         [TextArea]
         [SerializeField] string _skillDescription;
         [SerializeField] float _skillPower = 1f;
-
+        [SerializeField] int _executionPriority = 0;
         public PersonalityType PersonalityType => _personalityType;
         public string Name => _name;
         public string SkillName => _skillName;
         public string SkillDescription => _skillDescription;
-        public float SkillPower => _skillPower;
+        public int SkillLevel { get; set; } = 1;
+        public float SkillPower => _skillPower * SkillLevel;
+        public int ExecutionPriority => _executionPriority;
         public bool Used { get; private set; } = false;
 
         public void Execute(SkillExecuteContext context)
@@ -51,19 +57,19 @@ namespace MantenseiNobel.Mouhitotsu
             switch (_personalityType)
             {
                 case PersonalityType.Kindness:
-                    ExecuteMedalEnhancement(context);
-                    break;
-                case PersonalityType.Money:
                     ExecuteMedalRobbery(context);
                     break;
+                case PersonalityType.Money:
+                    ExecuteMedalEnhancement(context);
+                    break;
                 case PersonalityType.Intelligence:
-                    ExecuteCageBlockade(context);
+                    ExecuteSkillEnhancement(context);
                     break;
                 case PersonalityType.Health:
-                    ExecuteCageEnhancement(context);
+                    ExecuteCageBlockade(context);
                     break;
                 case PersonalityType.Sense:
-                    ExecuteSkillEnhancement(context);
+                    ExecuteCageEnhancement(context);
                     break;
                 case PersonalityType.Luck:
                     ExecuteScoreEnhancement(context);
@@ -73,11 +79,103 @@ namespace MantenseiNobel.Mouhitotsu
             }
         }
 
-        void ExecuteMedalEnhancement(SkillExecuteContext context) { }
-        void ExecuteMedalRobbery(SkillExecuteContext context) { }
-        void ExecuteCageBlockade(SkillExecuteContext context) { }
-        void ExecuteCageEnhancement(SkillExecuteContext context) { }
-        void ExecuteSkillEnhancement(SkillExecuteContext context) { }
-        void ExecuteScoreEnhancement(SkillExecuteContext context) { }
+        void ExecuteMedalEnhancement(SkillExecuteContext context)
+        {
+            for (int i = 0; i < (int)SkillPower; i++)
+            {
+                context.Hub.MedalManager.GenerateMedal(m => MedalOwnership.Attach(m, context.Owner.ID));
+            }
+        }
+        void ExecuteMedalRobbery(SkillExecuteContext context)
+        {
+            var effectPrefab = ResourceManager.GetResource<CageMedalRobbery>();
+
+            var ownerCages = context.Hub.CageManager.AllCages
+                .Where(cage =>
+                {
+                    var marker = cage.GetComponentInChildren<CageOwnershipMarker>();
+                    return marker != null && marker.ID == context.Owner.ID;
+                });
+
+            foreach (var cage in ownerCages)
+            {
+                var effectInstance = Object.Instantiate(effectPrefab, cage.transform);
+                var robberyComponent = effectInstance.GetComponent<CageMedalRobbery>();
+                robberyComponent.Setup((int)SkillPower);
+            }
+        }
+        void ExecuteCageBlockade(SkillExecuteContext context)
+        {
+            var blockadePrefab = ResourceManager.GetResource<CageBlockade>();
+
+            var enemyCages = context.Hub.CageManager.AllCages
+                .Where(cage =>
+                {
+                    var marker = cage.GetComponentInChildren<CageOwnershipMarker>();
+                    return marker != null && marker.ID != context.Owner.ID;
+                });
+
+            float R(float value)
+            {
+                return Random.Range(-value, value);
+            }
+
+            const float x = 0.25f;
+            const float y = 0.50f;
+            foreach (var cage in enemyCages)
+            {
+                for (int i = 0; i < SkillPower; i++)
+                {
+                    var blocker = Object.Instantiate(blockadePrefab, cage.transform);
+                    blocker.transform.Translate(new Vector2(R(x), Mathf.Abs(R(y))));
+                }
+            }
+        }
+        void ExecuteCageEnhancement(SkillExecuteContext context)
+        {
+            var ownerCages = context.Hub.CageManager.AllCages
+                .Where(cage =>
+                {
+                    var marker = cage.GetComponentInChildren<CageOwnershipMarker>();
+                    return marker != null && marker.ID == context.Owner.ID;
+                });
+
+            foreach (var cage in ownerCages)
+            {
+                CageEnhancement.LevelUp(cage, (int)SkillPower);
+            }
+        }
+        void ExecuteSkillEnhancement(SkillExecuteContext context)
+        {
+            var targetSkill = context.SelectedSkills
+                .Where(s => s != this)
+                .GetRandomElementOrDefault();
+
+            if (targetSkill == null)
+            {
+                Used = false;
+                return;
+            }
+
+            targetSkill.SkillLevel += (int)SkillPower;
+        }
+        void ExecuteScoreEnhancement(SkillExecuteContext context)
+        {
+            var ownerCages = context.Hub.CageManager.AllCages
+                .Where(cage =>
+                {
+                    var marker = cage.GetComponentInChildren<CageOwnershipMarker>();
+                    return marker != null && marker.ID == context.Owner.ID;
+                });
+
+            foreach (var cage in ownerCages)
+            {
+                var scoreAdder = cage.GetComponentInChildren<CageScoreAdder>();
+                if (scoreAdder != null)
+                {
+                    scoreAdder.ScoreMultiplier *= (int)SkillPower;
+                }
+            }
+        }
     }
 }

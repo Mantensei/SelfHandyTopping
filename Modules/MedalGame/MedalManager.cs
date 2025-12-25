@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MantenseiLib;
@@ -12,7 +13,10 @@ namespace MedalGame
         MedalLoader loader => Hub.Loader;
 
         [SerializeField] Medal _medalPrefab;
+        [SerializeField] float _generateDelay = 0.1f;
         HashSet<Medal> _medals = new();
+
+        int _queuedGenerateCount = 0;
 
         public IReadOnlyList<Medal> Medals => _medals.ToList();
 
@@ -21,11 +25,19 @@ namespace MedalGame
             GenerateMedal(config.InitialMedalCount);
         }
 
-        void GenerateMedal(int count = 1, float delay = 0.5f)
+        public void GenerateMedal(Action<Medal> onGenerated) => GenerateMedal(1, onGenerated);
+        public void GenerateMedal(int count = 1, Action<Medal> onGenerated = null)
         {
             for (int i = 0; i < count; i++)
             {
-                loader.GenerateDelayed(_medalPrefab, i * delay, m => RegisterMedal(m));
+                int currentIndex = _queuedGenerateCount;
+                _queuedGenerateCount++;
+
+                loader.GenerateDelayed(_medalPrefab, currentIndex * _generateDelay, m =>
+                {
+                    RegisterMedal(m);
+                    onGenerated?.Invoke(m);
+                });
             }
         }
 

@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using MantenseiLib;
 using UnityEngine;
 
 namespace MantenseiNobel.Mouhitotsu
 {
-    public class ScoreManager : MonoBehaviour
+    public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
     {
         readonly Dictionary<string, int> _scores = new();
 
@@ -18,6 +19,17 @@ namespace MantenseiNobel.Mouhitotsu
             }
 
             _scores[playerId] += points;
+            OnScoreChanged?.Invoke(playerId, _scores[playerId]);
+        }
+
+        public void RemoveScore(string playerId, int points = 1)
+        {
+            if (!_scores.ContainsKey(playerId))
+            {
+                return;
+            }
+
+            _scores[playerId] = Mathf.Max(0, _scores[playerId] - points);
             OnScoreChanged?.Invoke(playerId, _scores[playerId]);
         }
 

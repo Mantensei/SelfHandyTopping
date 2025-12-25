@@ -43,7 +43,8 @@ namespace MantenseiNobel.Mouhitotsu
                     _markerCages[markerPrefab] = new List<Cage>();
                 }
 
-                for (int i = 0; i < player.SkillCount; i++)
+                var skillCount = Mathf.Max(1, player.SkillCount);
+                for (int i = 0; i < skillCount; i++)
                 {
                     var cage = allCages[cageIndex++];
                     _markerCages[markerPrefab].Add(cage);

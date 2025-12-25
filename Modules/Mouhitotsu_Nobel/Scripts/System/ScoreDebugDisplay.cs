@@ -1,40 +1,52 @@
+using System.Linq;
 using MantenseiLib;
 using UnityEngine;
 
+#if UNITY_EDITOR
 namespace MantenseiNobel.Mouhitotsu
 {
     public class ScoreDebugDisplay : MonoBehaviour
     {
         [GetComponent] ScoreManager _scoreManager;
+        PlayerManager _playerManager => PlayerManager.Instance;
 
         [SerializeField] Vector2 _position = new Vector2(10, 10);
         [SerializeField] int _fontSize = 24;
         [SerializeField] Color _textColor = Color.white;
 
-        GUIStyle _style;
-
         void OnGUI()
         {
-            if (_scoreManager == null) return;
-
-            if (_style == null)
-            {
-                _style = new GUIStyle(GUI.skin.label)
-                {
-                    fontSize = _fontSize,
-                    normal = { textColor = _textColor }
-                };
-            }
+            if (_scoreManager == null || _playerManager == null) return;
 
             float yOffset = _position.y;
-            GUI.Label(new Rect(_position.x, yOffset, 300, 30), "=== SCORES ===", _style);
+
+            var headerStyle = new GUIStyle(GUI.skin.label)
+            {
+                fontSize = _fontSize,
+                normal = { textColor = _textColor }
+            };
+            GUI.Label(new Rect(_position.x, yOffset, 500, 30), "=== SCORES ===", headerStyle);
             yOffset += 30;
 
             foreach (var kvp in _scoreManager.AllScores)
             {
-                GUI.Label(new Rect(_position.x, yOffset, 300, 30), $"{kvp.Key}: {kvp.Value}", _style);
+                var player = _playerManager.GetPlayer(kvp.Key);
+                var playerColor = player != null ? player.Color : _textColor;
+
+                var style = new GUIStyle(GUI.skin.label)
+                {
+                    fontSize = _fontSize,
+                    normal = { textColor = playerColor }
+                };
+
+                var paddedId = kvp.Key.FirstOrDefault();
+                var circles = new string('●', Mathf.Max(0, kvp.Value));
+                var displayText = $"{paddedId} {circles} [ {kvp.Value} ]";
+
+                GUI.Label(new Rect(_position.x, yOffset, 500, 30), displayText, style);
                 yOffset += 30;
             }
         }
     }
 }
+#endif
