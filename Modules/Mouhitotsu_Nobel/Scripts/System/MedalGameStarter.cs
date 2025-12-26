@@ -2,7 +2,7 @@ using System.Collections;
 using MedalGame;
 using UnityEngine;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     public interface IMedalGameSceneLoadNotifier
     {

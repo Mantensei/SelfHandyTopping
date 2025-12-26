@@ -4,13 +4,17 @@ using MedalGame;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     public class CageEnhancement : MonoBehaviour
     {
         [SerializeField]
         int _level;
         public int Level => _level;
+
+        [SerializeField]
+        int _bonus = 0;
+        public int Bonus => _bonus;
 
         [Parent]
         Cage cage;
@@ -20,7 +24,7 @@ namespace MantenseiNobel.Mouhitotsu
 
         void Start()
         {
-            _scoreAdder.ScoreMultiplier = Level;
+            _scoreAdder.ScoreMultiplier += Bonus;
         }
 
         public void LevelUp(int add)

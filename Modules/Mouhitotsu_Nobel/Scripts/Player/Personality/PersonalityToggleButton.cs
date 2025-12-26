@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     public class PersonalityToggleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

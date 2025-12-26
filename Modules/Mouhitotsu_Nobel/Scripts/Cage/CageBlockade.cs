@@ -1,7 +1,7 @@
 using MedalGame;
 using UnityEngine;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     public class CageBlockade : MonoBehaviour
     {

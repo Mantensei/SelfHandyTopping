@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     public class PersonalityMenu : MonoBehaviour
     {
@@ -78,8 +78,29 @@ namespace MantenseiNobel.Mouhitotsu
                 personality.Execute(context);
             }
 
+            // ExecuteAISkills();
+
             _medalGameController.StartMedalGame();
             gameObject.SetActive(false);
+        }
+
+        void ExecuteAISkills()
+        {
+            var playerManager = PlayerManager.Instance;
+            var aiPlayers = playerManager.Players.Where(p => p != playerManager.MainPlayer);
+
+            foreach (var aiPlayer in aiPlayers)
+            {
+                var allSkills = aiPlayer.Personalities.ToList();
+                var skillCount = Random.Range(0, Mathf.Min(2, allSkills.Count + 1));
+                var selectedSkills = allSkills.Shuffle().Take(skillCount).OrderByDescending(x => x.ExecutionPriority).ToArray();
+
+                var context = new SkillExecuteContext(_medalGameController.Hub, aiPlayer, selectedSkills);
+                foreach (var skill in selectedSkills)
+                {
+                    skill.Execute(context);
+                }
+            }
         }
 
         void OnDestroy()

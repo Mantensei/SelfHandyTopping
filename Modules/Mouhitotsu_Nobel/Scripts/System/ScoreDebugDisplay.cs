@@ -3,7 +3,7 @@ using MantenseiLib;
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     public class ScoreDebugDisplay : MonoBehaviour
     {
@@ -41,7 +41,7 @@ namespace MantenseiNobel.Mouhitotsu
 
                 var paddedId = kvp.Key.FirstOrDefault();
                 var circles = new string('●', Mathf.Max(0, kvp.Value));
-                var displayText = $"{paddedId} {circles} [ {kvp.Value} ]";
+                var displayText = $"{paddedId} [ {kvp.Value} ] {circles} ";
 
                 GUI.Label(new Rect(_position.x, yOffset, 500, 30), displayText, style);
                 yOffset += 30;

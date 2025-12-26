@@ -4,7 +4,7 @@ using MantenseiLib;
 using MedalGame;
 using UnityEngine;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     public class CageDistributor : MonoBehaviour, IMedalGameSceneLoadNotifier
     {
@@ -43,7 +43,8 @@ namespace MantenseiNobel.Mouhitotsu
                     _markerCages[markerPrefab] = new List<Cage>();
                 }
 
-                var skillCount = Mathf.Max(1, player.SkillCount);
+                // var skillCount = Mathf.Max(1, player.SkillCount);
+                var skillCount = player.Personalities.Count;
                 for (int i = 0; i < skillCount; i++)
                 {
                     var cage = allCages[cageIndex++];
@@ -53,6 +54,15 @@ namespace MantenseiNobel.Mouhitotsu
                     {
                         var marker = Instantiate(markerPrefab, cage.transform);
                         marker.SetOwner(player);
+
+                        // var scoreAdder = cage.GetComponentInChildren<CageScoreAdder>();
+                        // if (scoreAdder != null)
+                        // {
+                        //     int[] bonusTable = { 0, 0, 1, 1, 3, 6 };
+                        //     int usedSkillCount = Mathf.Clamp(player.UsedSkillCount, 0, bonusTable.Length - 1);
+                        //     int personalityBonus = bonusTable.ElementAtOrDefault(usedSkillCount);
+                        //     scoreAdder.ScoreMultiplier += personalityBonus;
+                        // }
                     }
                 }
             }

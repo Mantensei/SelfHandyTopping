@@ -67,7 +67,7 @@ namespace MedalGame
             }
         }
 
-        void ShootDelayed(Medal medal, float delay)
+        public void ShootDelayed(Medal medal, float delay)
         {
             IEnumerator ShootDelayedCoroutine(Medal medal, float delay)
             {

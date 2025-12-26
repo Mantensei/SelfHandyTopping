@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using MantenseiLib;
+using MedalGame;
 using UnityEngine;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
-    public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
+    public class ScoreManager : SingletonMonoBehaviour<ScoreManager>, IMedalGameLoadCompleteReceiver
     {
         readonly Dictionary<string, int> _scores = new();
 
@@ -51,11 +52,17 @@ namespace MantenseiNobel.Mouhitotsu
 
         public void ResetAllScores()
         {
-            foreach (var playerId in _scores.Keys)
-            {
-                _scores[playerId] = 0;
-                OnScoreChanged?.Invoke(playerId, 0);
-            }
+            _scores.Clear();
+            // foreach (var playerId in _scores.Keys)
+            // {
+            //     _scores[playerId] = 0;
+            //     OnScoreChanged?.Invoke(playerId, 0);
+            // }
+        }
+
+        public void OnMedalGameLoaded(MedalGameReferenceHub hub)
+        {
+            ResetAllScores();
         }
     }
 }

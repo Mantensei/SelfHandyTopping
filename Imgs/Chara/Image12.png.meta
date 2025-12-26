@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: ef57c1ef320db094eb3e883bb42c9a4d
+guid: cd9efcad4fdea65448c94bd212bace2a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8166339648343521881
-    second: Fu_049_0
-  - first:
-      213: 1505270895062434549
-    second: Fu_049_1
-  - first:
-      213: 8065329097454109210
-    second: Fu_049_2
-  - first:
-      213: 7724937572269330514
-    second: Fu_049_3
+      213: 2819193078373866601
+    second: Image12_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -55,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -82,8 +73,8 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
+    resizeAlgorithm: 1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -122,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fu_049_0
+      name: Image12_0
       rect:
         serializedVersion: 2
-        x: 66
-        y: 114
-        width: 40
-        height: 35
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,74 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7a5cb416b555bae80800000000000000
-      internalID: -8166339648343521881
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fu_049_1
-      rect:
-        serializedVersion: 2
-        x: 125
-        y: 138
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5f24eee57ebc3e410800000000000000
-      internalID: 1505270895062434549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fu_049_2
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 114
-        width: 39
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a12cf5a051ecdef60800000000000000
-      internalID: 8065329097454109210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fu_049_3
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 55
-        width: 45
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2509e232bcd743b60800000000000000
-      internalID: 7724937572269330514
+      spriteID: 96cd6b50b29cf1720800000000000000
+      internalID: 2819193078373866601
       vertices: []
       indices: 
       edges: []
@@ -213,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -223,10 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Fu_049_0: -8166339648343521881
-      Fu_049_1: 1505270895062434549
-      Fu_049_2: 8065329097454109210
-      Fu_049_3: 7724937572269330514
+      Image12_0: 2819193078373866601
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

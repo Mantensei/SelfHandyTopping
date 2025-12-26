@@ -1,4 +1,4 @@
-using MantenseiNobel.Mouhitotsu;
+using MantenseiNovel.Mouhitotsu;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -3,7 +3,7 @@ using MantenseiLib;
 using MedalGame;
 using UnityEngine;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     public enum PersonalityType
     {
@@ -86,6 +86,7 @@ namespace MantenseiNobel.Mouhitotsu
                 context.Hub.MedalManager.GenerateMedal(m => MedalOwnership.Attach(m, context.Owner.ID));
             }
         }
+
         void ExecuteMedalRobbery(SkillExecuteContext context)
         {
             var effectPrefab = ResourceManager.GetResource<CageMedalRobbery>();
@@ -153,7 +154,7 @@ namespace MantenseiNobel.Mouhitotsu
 
             if (targetSkill == null)
             {
-                Used = false;
+                // Used = false;
                 return;
             }
 

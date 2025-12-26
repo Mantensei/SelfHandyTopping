@@ -2,7 +2,7 @@ using MantenseiLib;
 using MedalGame;
 using UnityEngine;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     public class NobelReferenceHub : SingletonMonoBehaviour<NobelReferenceHub>
     {

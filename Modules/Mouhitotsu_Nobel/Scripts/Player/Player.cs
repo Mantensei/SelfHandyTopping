@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MedalGame;
 using UnityEngine;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     [CreateAssetMenu(fileName = "Player", menuName = "Mouhitotsu/Player")]
     public class Player : ScriptableObject
@@ -29,6 +29,7 @@ namespace MantenseiNobel.Mouhitotsu
         }
 
         public int SkillCount => Personalities.Count(x => !x.Used);
+        public int UsedSkillCount => Personalities.Count(x => x.Used);
         public bool HasPersonality(PersonalityType skillType) => Personalities.Any(x => x.PersonalityType == skillType && !x.Used);
 
         public static implicit operator string(Player player) => player._id;

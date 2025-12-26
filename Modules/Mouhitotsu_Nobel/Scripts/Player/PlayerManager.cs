@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MantenseiLib;
 using UnityEngine;
 
-namespace MantenseiNobel.Mouhitotsu
+namespace MantenseiNovel.Mouhitotsu
 {
     public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     {
