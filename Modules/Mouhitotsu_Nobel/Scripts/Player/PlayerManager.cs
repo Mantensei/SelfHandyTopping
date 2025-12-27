@@ -15,6 +15,11 @@ namespace MantenseiNovel.Mouhitotsu
         List<Player> _players;
         public IReadOnlyList<Player> Players => _players;
 
+        void Start()
+        {
+            GeneratePlayers();
+        }
+
         public void GeneratePlayers()
         {
             if (_players != null) return;

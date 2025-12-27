@@ -10,24 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2abf1f99ce640f4bbce46925844baf9, type: 3}
-  m_Name: OP_2
+  m_Name: Chap1_2
   m_EditorClassIdentifier: 
+  _scenarioName: 
   _defaultTextSpeed: 0.05
   _dialogLines:
   - _characterName: "\u5343\u7D75\u91CC"
-    _text: "\u660E\u65E5\u306B\u5099\u3048\u3066\u65E9\u304F\u5E30\u3089\u306A\u304D\u3083...\n...\u3042\u3001\u30B2\u30FC\u30E0\u90E8\u306E\u90E8\u5BA4\u306B\u5FD8\u308C\u7269\u3057\u3066\u305F\u3093\u3060\u3063\u305F"
+    _text: "............\u3042\u3001\n\u30B2\u30FC\u30E0\u90E8\u306E\u90E8\u5BA4\u306B\u5FD8\u308C\u7269\u3057\u3066\u305F\u3093\u3060\u3063\u305F"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\uFF20"
     _text: "- \u30B2\u30FC\u30E0\u90E8\u3000\u90E8\u5BA4 -"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343\u7D75\u91CC"
-    _text: "\u3042\u3063\u305F\u3042\u3063\u305F\u30FC...\n\u3093\u3001\u3053\u306E\u30B9\u30A4\u30C3\u30C1\u306A\u3093\u3060\u308D\u30FC\uFF1F\n\u65B0\u4F5C\u30B2\u30FC\u30E0\uFF1F"
+    _text: "\u3042\u3063\u305F\u3042\u3063\u305F\u30FC..."
+    _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
+  - _characterName: "\u5343\u7D75\u91CC"
+    _text: "...\u3093\u3001\u3053\u306E\u30DC\u30BF\u30F3\u306F\u306A\u3093\u3060\u308D\u30FC\uFF1F\n...\u65B0\u4F5C\u30B2\u30FC\u30E0\uFF1F"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\uFF20"
     _text: "\u30DD\u30C1\u30C3"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\uFF20"
-    _text: "\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\u30D0\n\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\n\u30B0\u30EF\u30F3\u30B0\u30EF\u30F3\u30B0\u30EF\u30F3\u30B0\u30EF\u30F3\u30B0\u30EF\u30F3\u30B0\u30EF\u30F3\u30B0\u30EF\u30F3\u30B0\u30EF\u30F3"
+    _text: "\u30C9\u30AC\u30FC\u30F3\uFF01\uFF01\uFF01\uFF01\uFF01\n\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\u30D3\u30EA\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343\u7D75\u91CC"
     _text: "\u304E\u3083\u30FC\u3063"
@@ -42,22 +46,25 @@ MonoBehaviour:
     _text: "\u304E\u3083\u30FC\u3063\uFF01\uFF01\uFF01"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343\u7D75\u91CC\u305F\u3061"
-    _text: "\u300C\u300C\u300C\u300C\u3048\uFF1F\u300D\u300D\u300D\u300D"
+    _text: "\u300C\u300C\u300C\u300C......\uFF1F\uFF1F\t\uFF1F\u300D\u300D\u300D\u300D"
+    _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
+  - _characterName: "\uFF20"
+    _text: ...
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343\u7D75B"
-    _text: "\u3078\u30FC\u3001\u4EBA\u9593\u30B3\u30D4\u30FC\u6A5F\u3060\u3063\u3066\u30FC"
+    _text: "\u306A\u306B\u306A\u306B...\uFF1F\n\u3078\u30FC\u3001\u4EBA\u9593\u30B3\u30D4\u30FC\u6A5F\u3060\u3063\u3066\u30FC"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343A\u91CC"
-    _text: "\u308F\u30FC\u3044\u3001\u56DB\u3064\u5B50\u307F\u305F\u30FC\u3044"
-    _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
-  - _characterName: "C\u7D75\u91CC"
-    _text: "\u304D\u3083\u3063\u304D\u3083"
+    _text: "\u308F\u30FC\u3001\u56DB\u3064\u5B50\u307F\u305F\u30FC\u3044\u266A"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343\u7D75\u91CC"
-    _text: "\uFF08\u306F\u3063\uFF01\n\u79C1\u304C\uFF14\u4EBA\u3082\u3044\u305F\u3089\u3001\u305F\u3060\u3067\u3055\u3048\n\u8584\u3044\u500B\u6027\u304C\u3055\u3089\u306B\u8584\u307E\u3063\u3061\u3083\u3046\u3093\u3058\u3083\uFF01\uFF1F\uFF09"
+    _text: "\uFF08.......\u306F\u3063\uFF01\n\u79C1\u304C\uFF14\u4EBA\u3082\u3044\u305F\u3089\u3001\u305F\u3060\u3067\u3055\u3048\n\u8584\u3044\u500B\u6027\u304C\u3055\u3089\u306B\u8584\u307E\u3063\u3061\u3083\u3046\u3093\u3058\u3083\uFF01\uFF1F\uFF09"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343\u7D75\u91CC"
-    _text: "\uFF08\u305D\u3046\u3060\uFF01\n\u500B\u6027\u3092\u8EAB\u306B\u3064\u3051\u308B\u306E\u306F\u96E3\u3057\u3044\u3051\u3069...\n\u6368\u3066\u308B\u306E\u306A\u3089\u7C21\u5358\u3060\uFF01\uFF09"
+    _text: "\uFF08\u300E\u666E\u901A\u300F\u304C\u30C8\u30AF\u30D9\u30C4\u306B\u306A\u308C\u308B\u306E\u306F\n\u500B\u6027\u306B\u56F2\u307E\u308C\u3066\u308B\u3068\u304D\u3060\u3051\u3060\u3088\uFF5E...\uFF09\n"
+    _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
+  - _characterName: "\u5343\u7D75\u91CC"
+    _text: "\uFF08......\u305D\u3046\u3060\uFF01\n\u500B\u6027\u3092\u8EAB\u306B\u3064\u3051\u308B\u306E\u306F\u96E3\u3057\u3044\u3051\u3069...\n\u6368\u3066\u308B\u306E\u306A\u3089\u7C21\u5358\u304B\u3082\uFF01\uFF09"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343\u7D75\u91CC"
     _text: "\uFF08\u500B\u6027\u3092\u5C16\u3089\u305B\u308C\u3070\u3001\n\u304D\u3063\u3068\u98A8\u3061\u3083\u3093\u306B\u3082\u5370\u8C61\u3092\u30A2\u30D4\u30FC\u30EB\u3067\u304D\u308B\u306F\u305A\uFF01\uFF09"
@@ -66,14 +73,14 @@ MonoBehaviour:
     _text: "\u3061\u3087\u3046\u3069\uFF14\u4EBA\u3044\u308B\u3057\u3001\n\u3053\u306E\u30E1\u30C0\u30EB\u30B2\u30FC\u30E0\u3084\u3089\u306A\u3044\u30FC\uFF1F"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343A\u91CC"
-    _text: "\u3084\u308B\u3084\u308B\u30FC\uFF01"
+    _text: "\u3084\u308B\u3084\u308B\u30FC\u266A"
+    _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
+  - _characterName: "C\u7D75\u91CC"
+    _text: "\u3067\u3082\u3001\u76F8\u624B\u304C\u81EA\u5206\u3060\u3068\n\u771F\u9762\u76EE\u306B\u3084\u3089\u306A\u3044\u304B\u3082\uFF5E\uFF1F"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343\u7D75B"
-    _text: "\u3058\u3083\u3042\u3001\u52DD\u3063\u305F\u4EBA\u304C\u98A8\u3061\u3083\u3093\u3068\u304A\u53CB\u9054\u306B\u306A\u308C\u308B\u3063\u3066\u306E\u306F\u3069\u3046\uFF1F"
-    _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
-  - _characterName: "\u5343A\u91CC"
-    _text: "\u308F\u30FC\n\u304A\u3082\u3057\u308D\u305D\u30FC\uFF01"
+    _text: "\u3058\u3083\u3042\u3001\u52DD\u3063\u305F\u4EBA\u3060\u3051\u304C\n\u98A8\u3061\u3083\u3093\u3068\u304A\u53CB\u9054\u306B\u306A\u308C\u308B\u3063\u3066\u306E\u306F\u3069\u3046\uFF1F"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}
   - _characterName: "\u5343\u7D75\u91CC"
-    _text: "\u671B\u3080\u3068\u3053\u308D\u3060\u3088\u3063\uFF01"
+    _text: "...\uFF01\u3046\u3093\uFF01\n\u671B\u3080\u3068\u3053\u308D\u3060\u3088\u3063\uFF01"
     _characterSprite: {fileID: 21300000, guid: f3dbf69d9e2e2ee41aad2ae7b913d163, type: 3}

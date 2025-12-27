@@ -28,7 +28,9 @@ namespace MantenseiNovel.Mouhitotsu
             _personalities.Add(personality);
         }
 
-        public int SkillCount => Personalities.Count(x => !x.Used);
+        public Personality[] UsableSkills => Personalities.Where(x => !x.Used).ToArray();
+        public Personality[] UsedleSkills => Personalities.Where(x => x.Used).ToArray();
+        public int UsableSkillCount => Personalities.Count(x => !x.Used);
         public int UsedSkillCount => Personalities.Count(x => x.Used);
         public bool HasPersonality(PersonalityType skillType) => Personalities.Any(x => x.PersonalityType == skillType && !x.Used);
 

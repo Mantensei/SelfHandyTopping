@@ -70,7 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6077495944931914182, guid: 876901a31ace2c741baadcb97af1a0ab, type: 3}
       propertyPath: m_text
-      value: "\u2665"
+      value: "YOU\n\u2665"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077495944931914182, guid: 876901a31ace2c741baadcb97af1a0ab, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6077495944931914182, guid: 876901a31ace2c741baadcb97af1a0ab, type: 3}
       propertyPath: m_fontColor.b
