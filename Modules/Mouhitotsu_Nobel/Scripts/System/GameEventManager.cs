@@ -1,11 +1,14 @@
 using System.Linq;
 using MantenseiLib;
+using MantenseiNovel;
 using MedalGame;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace MantenseiNovel.Mouhitotsu
 {
+
+    //突貫工事で完成させるための暫定的なんでもあり神クラス
     public class GameEventManager : MonoBehaviour
     {
         Player main => PlayerManager.Instance.MainPlayer;
@@ -13,6 +16,20 @@ namespace MantenseiNovel.Mouhitotsu
         void Start()
         {
             GameManager.Instance.OnRegistGameResult += OnRegistGameResult;
+            Debug.Log(NovelScenarioManager.Instance);
+            NovelScenarioManager.Instance.OnScenarioComplete += OnScenarioComplete;
+        }
+
+        void OnScenarioComplete(NovelScenario scenario)
+        {
+            switch (scenario.ScenarioName)
+            {
+                case "OP_2":
+                    NobelReferenceHub.Instance.MedalGameStarter.LoadMedalGameScene();
+                    break;
+                default:
+                    break;
+            }
         }
 
         void OnRegistGameResult(GameResult result)
@@ -65,6 +82,19 @@ namespace MantenseiNovel.Mouhitotsu
 
             Destroy(GameManager.Instance.gameObject);
             SceneManager.LoadScene("Nobel_01");
+        }
+
+        void OnDestroy()
+        {
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.OnRegistGameResult -= OnRegistGameResult;
+            }
+
+            if (NovelScenarioManager.Instance != null)
+            {
+                NovelScenarioManager.Instance.OnScenarioComplete -= OnScenarioComplete;
+            }
         }
     }
 }

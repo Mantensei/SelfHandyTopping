@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _personalityType: 5
   _name: "\u30BB\u30F3\u30B9"
-  _skillName: "\u81EA\u5206\u78E8\u304D"
+  _skillName: "\u76DB\u308C\u3070\u76DB\u308B\u307B\u3069\u3044\u3044\uFF01"
   _skillDescription: "[\u6368\u3066\u305F\u30BF\u30FC\u30F3\u306E\u52B9\u679C]\n\n\u30B1\u30FC\u30B8\u3092\u5F37\u5316\u3059\u308B"
   _skillPower: 1
   _executionPriority: 0
