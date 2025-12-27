@@ -15,7 +15,7 @@ namespace MantenseiNovel.Mouhitotsu
     public class GameEventManager : MonoBehaviour, IMedalGameLoadCompleteReceiver
     {
         Player _mainPlayer => PlayerManager.Instance.MainPlayer;
-        NovelScenarioManager scenarioManager => NovelScenarioManager.Instance;
+        NovelScenarioManager _scenarioManager => NovelScenarioManager.Instance;
 
         [SerializeField] TextMeshProUGUI _title_txt;
         string[] _chapterTitles = new[]
@@ -24,24 +24,33 @@ namespace MantenseiNovel.Mouhitotsu
             "『対戦結果１』",
             "『対戦結果２』",
             "『対戦結果３』",
-            "『優勝賞品』",
+            "『優勝』",
         };
 
         void Start()
         {
             GameManager.Instance.OnRegistGameResult += OnRegistGameResult;
-            scenarioManager.OnScenarioComplete += OnScenarioComplete;
+            _scenarioManager.OnAllScenariosComplete += OnScenarioComplete;
         }
 
-        void OnScenarioComplete(NovelScenario scenario)
+        void OnScenarioComplete(NovelScenario[] scenarios)
         {
-            switch (scenario.ScenarioName)
+            foreach (var scenario in scenarios)
             {
-                case "Chap1_2":
-                    NobelReferenceHub.Instance.MedalGameStarter.LoadMedalGameScene();
-                    break;
-                default:
-                    break;
+                switch (scenario.ScenarioName)
+                {
+                    case "Chap1_2":
+                        NobelReferenceHub.Instance.MedalGameStarter.LoadMedalGameScene();
+                        return;
+                    case _win:
+                        NobelReferenceHub.Instance.MedalGameStarter.LoadMedalGameScene();
+                        return;
+                    case _victory:
+                        NobelReferenceHub.Instance.MedalGameStarter.LoadMedalGameScene();
+                        return;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -75,6 +84,15 @@ namespace MantenseiNovel.Mouhitotsu
             }
         }
 
+        void Victory()
+        {
+            {
+                _title_txt.text = "最終決戦";
+            }
+            LoadNovelScene(1);
+            SetVictoryScenario();
+        }
+
         void Win(GameResult result)
         {
             var worst = result
@@ -86,20 +104,43 @@ namespace MantenseiNovel.Mouhitotsu
 
             worst.Alive = false;
 
+            if (result.PlayerResults.Count(x => x.Player.Alive) == 1)
+            {
+                Victory();
+                return;
+            }
 
             {
                 _title_txt.text = _chapterTitles[result.Phase];
             }
+            LoadNovelScene(1);
+            // LoadNovelScene(result.Phase + 1);
+            SetWinningScenario();
+        }
 
+        const string _win = "Win";
+        const string _victory = "Victory";
+        static readonly string _chieri = "千絵里";
+        void SetWinningScenario()
+        {
+            _scenarioManager.PlayScenario(_win, _chieri, GetWinDialogs().ToArray());
+        }
 
-            LoadNovelScene(result.Phase);
+        void SetVictoryScenario()
+        {
+            var log = GetVictoryLogs().ToArray();
+            _scenarioManager.PlayScenario(_victory, _chieri, log.Select(x => x.log).ToArray());
         }
 
         void Lose(GameResult result)
         {
             _mainPlayer.Alive = false;
 
+            // var singletons = FindObjectsByType<BaseMonoBehaviour>(FindObjectsSortMode.None);
+            // foreach(var singleton in singletons)
+            //     Destroy(GameManager.Instance.gameObject);
             Destroy(GameManager.Instance.gameObject);
+            Destroy(_scenarioManager.gameObject);
             LoadNovelScene(1);
         }
 
@@ -110,9 +151,9 @@ namespace MantenseiNovel.Mouhitotsu
 
         public void OnMedalGameLoaded(MedalGameReferenceHub hub)
         {
-            scenarioManager.gameObject.SetActive(false);
+            _scenarioManager.gameObject.SetActive(false);
             hub.GameManager.OnGameOver += () =>
-            scenarioManager.gameObject.SetActive(true);
+            _scenarioManager.gameObject.SetActive(true);
         }
 
         IEnumerable<string> GetWinDialogs()
@@ -147,7 +188,7 @@ namespace MantenseiNovel.Mouhitotsu
             return null;
         }
 
-        IEnumerable<(string log, PersonalityType personality)> GetLogs()
+        IEnumerable<(string log, PersonalityType personality)> GetVictoryLogs()
         {
             (string, PersonalityType) GetLog(PersonalityType personality)
             {
